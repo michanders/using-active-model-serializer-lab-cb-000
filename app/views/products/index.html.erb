@@ -1,3 +1,4 @@
+
 <h1>Products</h1>
 <% @products.each do |product| %>
   <h3><%= product.name %></h3>
@@ -10,13 +11,12 @@ $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
     $.get("/products/" + id + ".json", function(data) {
-        var inventoryText = "<strong>Available</strong>";
-        if(data.inventory === 0){
-          inventoryText = "<strong>Sold Out</strong>";
-        }
-        var descriptionText = "<p>" + data.description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
-      });
+      var inventoryText = "<strong>Available</strong>";
+      if(data.inventory === 0){
+        inventoryText = "<strong>Sold Out</strong>";
+      }
+      var descriptionText = "<p>" + data.description + "</p><p>" + inventoryText + "</p>";
+      $("#product-" + id).html(descriptionText);
     });
   });
 });
